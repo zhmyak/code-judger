@@ -7,6 +7,7 @@ namespace OnlineJudger.Domain.Stores
         Task<IReadOnlyList<Submission>> GetAllAsync();
         Task<Submission?> GetByIdAsync(int id);
         Task<IReadOnlyList<Submission>> GetAllByUserIdAsync(int userId);
+        Task<IReadOnlyList<Submission>> GetAllByUserAndProblemIdAsync(int userId, int problemId);
         Task<Submission?> GetByIdWithLanguageAsync(int id);
         Task AddAsync(Submission submission);
         void Update(Submission submission);

@@ -12,8 +12,17 @@ namespace OnlineJudger.Application.DTOs
         public int Id { get; set; }
         public string Username { get; set; } = null!;
         public string Email { get; set; } = null!;
-        public string PasswordHash { get; set; } = null!;
+        public int AllSolvedProblems {  get; set; }
+        public int EasySolvedProblems { get; set; }
+        public int MediumSolvedProblems { get; set; }
+        public int HardSolvedProblems { get; set; }
+        public DateTime LastSubmitted {  get; set; }
+        
+        public int SubmittedLastWeek {  get; set; }
+        public int SubmittedLastMonth {  get; set; }
+        public int SubmittedLastYear {  get; set; }
+        public int Points {  get; set; }
+        public int TopPlace {  get; set; }
         public DateTime CreatedAt { get; set; }
-        public List<Submission> Submissions { get; set; } = new();
     }
 }

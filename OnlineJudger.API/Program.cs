@@ -56,6 +56,8 @@ builder.Services.AddScoped<ISubmissionRepository, SubmissionRepository>();
 builder.Services.AddScoped<IQueueRepository, QueueRepository>();
 builder.Services.AddScoped<IProblemRepository, ProblemRepository>();
 builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
+builder.Services.AddScoped<ICodeSnippetRepository, CodeSnippetRepository>();
+builder.Services.AddScoped<CodeService>();
 builder.Services.AddScoped<EncryptionService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<JwtProvider>();

@@ -57,5 +57,10 @@ namespace OnlineJudger.Infrastructure.Persistance
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IReadOnlyList<Submission>> GetAllByUserAndProblemIdAsync(int userId, int problemId)
+        {
+            return await _context.Submissions.Where(s => s.UserId == userId && s.ProblemId == problemId).ToListAsync();
+        }
     }
 }

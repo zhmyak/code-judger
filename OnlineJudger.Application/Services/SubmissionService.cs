@@ -7,6 +7,8 @@ using OnlineJudger.Domain.Stores;
 using OnlineJudger.Domain.Entities;
 using OnlineJudger.Domain.Enums;
 using System.ComponentModel;
+using OnlineJudger.Application.DTOs;
+using OnlineJudger.Application.Exceptions;
 
 namespace OnlineJudger.Application.Services
 {
@@ -44,21 +46,25 @@ namespace OnlineJudger.Application.Services
             await _unitOfWork.SaveChangesAsync();
             return submission.Id;
         }
-        public async Task<string> GetSubmissionStatus(int id)
+        public async Task<SubmissionInfo> GetSubmissionInfo(int id)
         {
             var submission = await _submissionRepository.GetByIdAsync(id);
             if (submission == null)
             {
-                throw new Exception("Нет submission с id {id}");
+                throw new NotFoundException("Нет submission с id {id}");
             }
-            return submission.Status.ToString();
+            return new SubmissionInfo 
+            {
+                Status = submission.Status.ToString(),
+                ErrorMessage = submission.ErrorMessage
+            };
         }
         public async Task<Submission> GetByIdAsync(int id)
         {
             var submission = await _submissionRepository.GetByIdAsync(id);
             if(submission == null)
             {
-                throw new Exception($"Нет submission с id {id}");
+                throw new NotFoundException($"Нет submission с id {id}");
             }
             return submission;
         }

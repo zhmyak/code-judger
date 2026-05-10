@@ -40,11 +40,8 @@ namespace OnlineJudger.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> CheckSubmissionStatus(int id)
         {
-            string status = await _submissionService.GetSubmissionStatus(id);
-            return Ok(new
-            {
-                Status = status
-            });
+            var submissionInfo = await _submissionService.GetSubmissionInfo(id);
+            return Ok(submissionInfo);
         }
     }
 }
