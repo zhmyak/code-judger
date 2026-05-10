@@ -51,7 +51,7 @@ namespace OnlineJudger.Application.Services
             var submission = await _submissionRepository.GetByIdAsync(id);
             if (submission == null)
             {
-                throw new NotFoundException("Нет submission с id {id}");
+                throw new SubmissionNotFoundException();
             }
             return new SubmissionInfo 
             {
@@ -64,7 +64,7 @@ namespace OnlineJudger.Application.Services
             var submission = await _submissionRepository.GetByIdAsync(id);
             if(submission == null)
             {
-                throw new NotFoundException($"Нет submission с id {id}");
+                throw new SubmissionNotFoundException();
             }
             return submission;
         }

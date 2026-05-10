@@ -39,6 +39,28 @@ namespace OnlineJudger.Application.Services
             }
             return result;
         }
+
+        public async Task<List<ProblemDTO>> GetAllSolvedByUserIdAsync(int userId)
+        {
+            var problems = await _problemRepository.GetAllAsync();
+            var result = new List<ProblemDTO>();
+            foreach (var problem in problems)
+            {
+                var isSolved = await IsProblemSolvedByUserAsync(userId, problem.Id);
+                if (isSolved)
+                {
+                    result.Add(new ProblemDTO
+                    {
+                        Id = problem.Id,
+                        Title = problem.Title,
+                        Description = problem.Description,
+                        Difficulty = problem.Difficulty.ToString(),
+                        IsSolved = isSolved
+                    });
+                }
+            }
+            return result;
+        }
         public async Task<ProblemDTO> GetByIdAsync(int id, int userId)
         {
             var problem = await _problemRepository.GetByIdAsync(id);

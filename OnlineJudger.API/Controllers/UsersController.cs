@@ -46,5 +46,20 @@ namespace OnlineJudger.API.Controllers
             var claimsList = User.Claims.Select(claim => new { claim.Type, claim.Value }).ToList();
             return Ok(claimsList);
         }
+
+        [Authorize]
+        [HttpGet("api/users/{id}")]
+        public async Task<IActionResult> GetUserInfo(int id)
+        {
+            var userInfo = await _userService.GetUserInfo(id);
+            return Ok(userInfo);
+        }
+        [Authorize]
+        [HttpGet("api/toplist")]
+        public async Task<IActionResult> GetTopList()
+        {
+            var topList = await _userService.GetTopList();
+            return Ok(topList);
+        }
     }
 }

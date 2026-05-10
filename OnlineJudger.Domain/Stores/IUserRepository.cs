@@ -8,5 +8,6 @@ namespace OnlineJudger.Domain.Stores
         Task<User?> GetByIdAsync(int id);
         Task<User?> GetByUsernameAsync(string username);
         Task<User?> GetByEmailAsync(string email);
+        Task<IReadOnlyList<User>> GetAllOrderByPointsDesc();
     }
 }

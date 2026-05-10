@@ -16,13 +16,13 @@ namespace OnlineJudger.Application.DTOs
         public int EasySolvedProblems { get; set; }
         public int MediumSolvedProblems { get; set; }
         public int HardSolvedProblems { get; set; }
-        public DateTime LastSubmitted {  get; set; }
+        public DateTime? LastSubmitted {  get; set; }
         
         public int SubmittedLastWeek {  get; set; }
         public int SubmittedLastMonth {  get; set; }
         public int SubmittedLastYear {  get; set; }
         public int Points {  get; set; }
-        public int TopPlace {  get; set; }
+        public int PlaceInTop {  get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

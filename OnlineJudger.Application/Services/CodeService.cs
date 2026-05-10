@@ -29,7 +29,7 @@ namespace OnlineJudger.Application.Services
                 var codeSnippet = await _codeSnippetRepository.GetByIdAsync(problemId, languageId);
                 if (codeSnippet == null)
                 {
-                    throw new NotFoundException($"Не найден {nameof(codeSnippet)}");
+                    throw new CodeSnippetNotFoundException();
                 }
                 return codeSnippet.Code;
             }

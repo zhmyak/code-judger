@@ -24,4 +24,17 @@ namespace OnlineJudger.Application.Exceptions
         {
         }
     }
+    public class SubmissionNotFoundException : NotFoundException
+    {
+        public SubmissionNotFoundException() : base("Решение не найдено")
+        {
+        }
+    }
+    public class CodeSnippetNotFoundException : NotFoundException
+    {
+        public CodeSnippetNotFoundException() : base("Шаблон кода не найден")
+        {
+        }
+    }
+
 }

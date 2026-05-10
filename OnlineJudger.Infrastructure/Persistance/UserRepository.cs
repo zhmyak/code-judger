@@ -35,5 +35,10 @@ namespace OnlineJudger.Infrastructure.Persistance
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<IReadOnlyList<User>> GetAllOrderByPointsDesc()
+        {
+            return await _context.Users.OrderByDescending(u => u.Points).ToListAsync();
+        }
     }
 }
