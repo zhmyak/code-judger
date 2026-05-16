@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineJudger.Domain.Entities;
-using OnlineJudger.Domain.Enums;
 using OnlineJudger.Domain.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineJudger.Infrastructure.Persistance
 {
@@ -21,7 +15,7 @@ namespace OnlineJudger.Infrastructure.Persistance
 
         public async Task AddAsync(JudgeQueue entity)
         {
-           await _context.JudgeQueue.AddAsync(entity);
+            await _context.JudgeQueue.AddAsync(entity);
         }
 
         public void Remove(JudgeQueue entity)

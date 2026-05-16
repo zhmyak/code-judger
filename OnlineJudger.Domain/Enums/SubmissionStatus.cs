@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OnlineJudger.Domain.Enums
+﻿namespace OnlineJudger.Domain.Enums
 {
     public enum SubmissionStatus
     {

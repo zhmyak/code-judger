@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace OnlineJudger.JudgeWorker.Models
+﻿namespace OnlineJudger.JudgeWorker.Models
 {
     public class ExecutionResult
     {
         public bool Success { get; set; }
-        public string Output {  get; set; }
-        public string ErrorMessage {  get; set; }
-        public bool IsTimeout {  get; private set; }
-        public bool IsMemoryOut {  get; private set; }
+        public string Output { get; set; }
+        public string ErrorMessage { get; set; }
+        public bool IsTimeout { get; private set; }
+        public bool IsMemoryOut { get; private set; }
         public bool IsRuntimeError { get; private set; }
 
 

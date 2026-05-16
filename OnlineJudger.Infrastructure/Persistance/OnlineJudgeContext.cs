@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
+﻿using Microsoft.EntityFrameworkCore;
 using OnlineJudger.Domain.Entities;
 using OnlineJudger.Domain.Stores;
 namespace OnlineJudger.Infrastructure.Persistance
@@ -26,7 +18,7 @@ namespace OnlineJudger.Infrastructure.Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Submission>(entity => 
+            modelBuilder.Entity<Submission>(entity =>
             {
                 entity.Property(s => s.UserId).HasColumnName("user_id");
                 entity.Property(s => s.ProblemId).HasColumnName("problem_id");
@@ -141,7 +133,7 @@ namespace OnlineJudger.Infrastructure.Persistance
                 .HasForeignKey<JudgeQueue>(jq => jq.SubmissionId);
             modelBuilder.Entity<CodeSnippet>()
                 .ToTable("code_snippets")
-                .HasKey(cs => new {cs.ProblemId, cs.LanguageId});
+                .HasKey(cs => new { cs.ProblemId, cs.LanguageId });
         }
     }
 }

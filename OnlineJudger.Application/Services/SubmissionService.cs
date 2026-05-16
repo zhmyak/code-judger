@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineJudger.Domain.Stores;
+﻿using OnlineJudger.Application.DTOs;
+using OnlineJudger.Application.Exceptions;
 using OnlineJudger.Domain.Entities;
 using OnlineJudger.Domain.Enums;
-using System.ComponentModel;
-using OnlineJudger.Application.DTOs;
-using OnlineJudger.Application.Exceptions;
+using OnlineJudger.Domain.Stores;
 
 namespace OnlineJudger.Application.Services
 {
@@ -53,7 +47,7 @@ namespace OnlineJudger.Application.Services
             {
                 throw new SubmissionNotFoundException();
             }
-            return new SubmissionInfo 
+            return new SubmissionInfo
             {
                 Status = submission.Status.ToString(),
                 ErrorMessage = submission.ErrorMessage
@@ -62,7 +56,7 @@ namespace OnlineJudger.Application.Services
         public async Task<Submission> GetByIdAsync(int id)
         {
             var submission = await _submissionRepository.GetByIdAsync(id);
-            if(submission == null)
+            if (submission == null)
             {
                 throw new SubmissionNotFoundException();
             }

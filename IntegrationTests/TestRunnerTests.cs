@@ -45,7 +45,7 @@ class Solution(object):
       { ""type"": ""array"", ""value"": [3, 3] },
       { ""type"": ""int"",   ""value"": 6 }
     ]",
-                ExpectedOutput= @"{ ""type"": ""array"", ""value"": [0, 1]}",
+                ExpectedOutput = @"{ ""type"": ""array"", ""value"": [0, 1]}",
             };
             string methodName = "twoSum";
             var testRunResult = await testRunner.RunTestAsync(submission, testCase, methodName);

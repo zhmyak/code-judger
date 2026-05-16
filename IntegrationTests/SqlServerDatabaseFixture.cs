@@ -22,7 +22,7 @@ namespace IntegrationTests
                 .Build();
             _connectionString = config.GetConnectionString("SqlServer") ?? throw new Exception();
             _options = new DbContextOptionsBuilder<OnlineJudgeContext>().UseSqlServer(_connectionString).Options;
-            Context = new OnlineJudgeContext(_options);            
+            Context = new OnlineJudgeContext(_options);
         }
     }
 }

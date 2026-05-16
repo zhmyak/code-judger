@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OnlineJudger.Domain.Stores;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineJudger.API.Contracts;
-using Microsoft.AspNetCore.Authorization;
+using OnlineJudger.Domain.Stores;
 
 namespace OnlineJudger.API.Controllers
 {
@@ -29,6 +29,6 @@ namespace OnlineJudger.API.Controllers
             _logger.LogInformation("Получен список ЯП");
             return Ok(result);
         }
-       
+
     }
 }

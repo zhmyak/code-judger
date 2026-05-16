@@ -1,21 +1,16 @@
-﻿using OnlineJudger.Domain.Stores;
+﻿using OnlineJudger.Domain.Enums;
+using OnlineJudger.Domain.Stores;
 using OnlineJudger.Infrastructure.Persistance;
 using OnlineJudger.JudgeWorker;
 using OnlineJudger.JudgeWorker.Interfaces;
 using OnlineJudger.JudgeWorker.Services;
-using OnlineJudger.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IntegrationTests
 {
     public class JudgeEngineTests : IClassFixture<SqlServerDatabaseFixture>
     {
         private readonly SqlServerDatabaseFixture _fixture;
-        
+
         public JudgeEngineTests(SqlServerDatabaseFixture fixture)
         {
             _fixture = fixture;
@@ -29,7 +24,7 @@ namespace IntegrationTests
             ITestRunner testRunner = new TestRunner(sandboxExecuter);
             IProblemRepository problemRepository = new ProblemRepository(_fixture.Context);
             ITestCaseRepository testCaseRepository = new TestCaseRepository(_fixture.Context);
-            ISubmissionRepository submissionRepository= new SubmissionRepository(_fixture.Context);
+            ISubmissionRepository submissionRepository = new SubmissionRepository(_fixture.Context);
             IUnitOfWork unitOfWork = _fixture.Context;
             JudgeEngine judgeEngine = new JudgeEngine(
                 testRunner,

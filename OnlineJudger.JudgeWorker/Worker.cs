@@ -18,7 +18,7 @@ namespace OnlineJudger.JudgeWorker
             {
                 if (_logger.IsEnabled(LogLevel.Information))
                 {
-                  //  _logger.LogInformation("Воркер запущен в: {time}", DateTimeOffset.Now);
+                    //  _logger.LogInformation("Воркер запущен в: {time}", DateTimeOffset.Now);
                 }
                 using (var scope = _serviceProvider.CreateScope())
                 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OnlineJudger.Domain.Entities
+﻿namespace OnlineJudger.Domain.Entities
 {
     public class TestCase
     {

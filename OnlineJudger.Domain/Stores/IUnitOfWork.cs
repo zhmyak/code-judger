@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OnlineJudger.Domain.Stores
+﻿namespace OnlineJudger.Domain.Stores
 {
     public interface IUnitOfWork
     {

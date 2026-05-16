@@ -1,11 +1,6 @@
 ﻿using OnlineJudger.Domain.Entities;
 using OnlineJudger.Domain.Stores;
 using OnlineJudger.JudgeWorker.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineJudger.JudgeWorker.Services
 {
@@ -16,8 +11,8 @@ namespace OnlineJudger.JudgeWorker.Services
         private readonly IProblemRepository _problemRepository;
         private readonly IUnitOfWork _unitOfWork;
         public ScoreCounter(
-            ISubmissionRepository submissionRepository, 
-            IUserRepository userRepository, 
+            ISubmissionRepository submissionRepository,
+            IUserRepository userRepository,
             IProblemRepository problemRepository,
             IUnitOfWork unitOfWork)
         {
@@ -47,7 +42,7 @@ namespace OnlineJudger.JudgeWorker.Services
                 _ => throw new Exception($"Неизвестная сложность {problem.Difficulty}")
             };
             var user = await _userRepository.GetByIdAsync(sub.UserId);
-            if(user == null)
+            if (user == null)
             {
                 throw new ArgumentException(nameof(_userRepository.GetByIdAsync));
             }

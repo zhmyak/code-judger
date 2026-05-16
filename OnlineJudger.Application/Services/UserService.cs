@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineJudger.Domain.Stores;
-using OnlineJudger.Domain.Entities;
-using OnlineJudger.Application.Settings;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using Microsoft.IdentityModel.JsonWebTokens;
+﻿using OnlineJudger.Application.DTOs;
 using OnlineJudger.Application.Exceptions;
-using System.Numerics;
-using OnlineJudger.Application.DTOs;
-using Microsoft.AspNetCore.SignalR;
+using OnlineJudger.Domain.Entities;
+using OnlineJudger.Domain.Stores;
 
 namespace OnlineJudger.Application.Services
 {
@@ -43,11 +31,11 @@ namespace OnlineJudger.Application.Services
         }
         public async Task<string> RegistrUser(string username, string password, string email)
         {
-            if(await _userRepository.GetByUsernameAsync(username) != null)
+            if (await _userRepository.GetByUsernameAsync(username) != null)
             {
                 throw new UserNameIsAlreadyUsedException();
             }
-            if(await _userRepository.GetByEmailAsync(email) != null)
+            if (await _userRepository.GetByEmailAsync(email) != null)
             {
                 throw new EmailIsAlreadyUsedException();
             }
@@ -66,7 +54,7 @@ namespace OnlineJudger.Application.Services
         public async Task<User> GetUserInfoById(int id)
         {
             var user = await _userRepository.GetByIdAsync(id);
-            if(user == null)
+            if (user == null)
             {
                 throw new UserNotFoundException();
             }
@@ -79,7 +67,7 @@ namespace OnlineJudger.Application.Services
             {
                 throw new InvalidLoginException();
             }
-            if(user.PasswordHash != _encryptionService.Encrypt(password))
+            if (user.PasswordHash != _encryptionService.Encrypt(password))
             {
                 throw new InvalidPasswordException();
             }
@@ -90,7 +78,7 @@ namespace OnlineJudger.Application.Services
         {
             var users = await _userRepository.GetAllOrderByPointsDesc();
             var topList = new List<UserDTO>();
-            for(int i  = 0; i < users.Count; i++)
+            for (int i = 0; i < users.Count; i++)
             {
                 topList.Add(new UserDTO
                 {

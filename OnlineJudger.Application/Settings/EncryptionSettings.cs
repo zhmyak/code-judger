@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OnlineJudger.Application.Settings
+﻿namespace OnlineJudger.Application.Settings
 {
     public class EncryptionSettings
     {

@@ -1,12 +1,6 @@
-﻿using OnlineJudger.Domain.Stores;
-using OnlineJudger.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineJudger.Application.DTOs;
+﻿using OnlineJudger.Application.DTOs;
 using OnlineJudger.Application.Exceptions;
+using OnlineJudger.Domain.Stores;
 
 namespace OnlineJudger.Application.Services
 {
@@ -25,7 +19,7 @@ namespace OnlineJudger.Application.Services
         {
             var problems = await _problemRepository.GetAllAsync();
             var result = new List<ProblemDTO>();
-            foreach(var problem in problems)
+            foreach (var problem in problems)
             {
                 var isSolved = await IsProblemSolvedByUserAsync(userId, problem.Id);
                 result.Add(new ProblemDTO

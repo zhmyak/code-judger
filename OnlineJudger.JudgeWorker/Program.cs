@@ -21,6 +21,7 @@ builder.Services.AddTransient<IProblemRepository, ProblemRepository>();
 builder.Services.AddTransient<IQueueRepository, QueueRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IScoreCounter, ScoreCounter>();
+builder.Services.AddTransient<ICompiler, CompilerService>();
 builder.Services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<OnlineJudgeContext>());
 builder.Services.AddTransient<JudgeEngine>();
 builder.Services.AddHostedService<Worker>();

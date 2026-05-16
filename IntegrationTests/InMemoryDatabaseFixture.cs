@@ -1,13 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.InMemory;
 using OnlineJudger.Domain.Entities;
 using OnlineJudger.Domain.Enums;
 using OnlineJudger.Infrastructure.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IntegrationTests
 {
@@ -174,19 +168,19 @@ class Solution(object):
                 }
 
             };
-            foreach(var language in languages)
+            foreach (var language in languages)
             {
                 Context.Languages.Add(language);
             }
-            foreach(var problem in problems)
+            foreach (var problem in problems)
             {
                 Context.Problems.Add(problem);
             }
-            foreach(var submission in submissions)
+            foreach (var submission in submissions)
             {
                 Context.Submissions.Add(submission);
             }
-            foreach(var testCase in testCases)
+            foreach (var testCase in testCases)
             {
                 Context.TestCases.Add(testCase);
             }

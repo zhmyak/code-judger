@@ -1,5 +1,4 @@
 ﻿using OnlineJudger.Domain.Entities;
-using OnlineJudger.Domain.Enums;
 
 namespace OnlineJudger.Domain.Stores
 {

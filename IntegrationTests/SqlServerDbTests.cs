@@ -88,7 +88,7 @@ class Solution(object):
                  //Runtime Error
                 new Submission
                 {
-                    
+
                     UserId=1,
                     ProblemId=1,
                     LanguageId=1,
@@ -116,13 +116,13 @@ class Solution(object):
                     UpdatedAt=DateTime.Now
                 }
             };
-            foreach(var submission in submissionsInitList)
+            foreach (var submission in submissionsInitList)
             {
                 await context.AddAsync(submission);
 
             }
             await context.SaveChangesAsync();
-            
+
             var submissions = await context.Submissions.ToListAsync();
             Assert.Equal(3, submissions.Count);
 

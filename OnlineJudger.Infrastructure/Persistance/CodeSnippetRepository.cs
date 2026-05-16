@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineJudger.Domain.Entities;
 using OnlineJudger.Domain.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineJudger.Infrastructure.Persistance
 {
@@ -22,7 +17,7 @@ namespace OnlineJudger.Infrastructure.Persistance
         {
             return await _context.CodeSnippets
                  .FirstOrDefaultAsync(cs => cs.ProblemId == problemId && cs.LanguageId == languageId);
-     
+
         }
     }
 }

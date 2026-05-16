@@ -1,5 +1,4 @@
-﻿using OnlineJudger.Domain.Entities;
-using OnlineJudger.JudgeWorker.Interfaces;
+﻿using OnlineJudger.JudgeWorker.Interfaces;
 using OnlineJudger.JudgeWorker.Models;
 using System.Diagnostics;
 namespace OnlineJudger.JudgeWorker.Services
@@ -12,12 +11,26 @@ namespace OnlineJudger.JudgeWorker.Services
             {
                 FileName = options.RunCommand,
                 Arguments = options.Path,
-                UseShellExecute = false,  
-                RedirectStandardInput = true,  
-                RedirectStandardOutput = true,  
-                RedirectStandardError = true, 
-                CreateNoWindow = true 
+                UseShellExecute = false,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
             };
+            if (options.RunCommand == "java")
+            {
+                string jarPath = @"tmp\lib\json-20240303.jar";
+                processInfo = new ProcessStartInfo
+                {
+                    FileName = options.RunCommand,
+                    Arguments = $"-cp .;{jarPath};{options.Path} Harness",
+                    UseShellExecute = false,
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true
+                };
+            }
             using (var process = Process.Start(processInfo))
             {
                 if (process == null)

@@ -12,35 +12,8 @@ namespace OnlineJudger.JudgeWorker.Services
         {
             _sandboxExecuter = sandboxExecuter;
         }
-        public async Task<TestRunResult> RunTestAsync(Submission submission, TestCase testCase, string methodName)
+        public async Task<TestRunResult> RunTestAsync(string runCommand, string path, TestCase testCase, string methodName)
         {
-            var language = submission.Language;
-            string sourceCode = submission.SourceCode;
-
-            var workDir = Path.Combine("tmp/submissions", submission.Id.ToString());
-            Directory.CreateDirectory(workDir);
-            string fileName = language.FileName;
-            string fullPath = Path.Combine(workDir, fileName);
-
-            /* switch (language.Name)
-             {
-                 case "Python":
-                     fullCode = sourceCode + Harness.GetPythonHarness();
-                     break;
-                 case "cpp":
-                     throw new Exception("cpp is not implemented yet");
-                 default:
-                     throw new Exception($"uknown language: {language.Name}");
-             }*/
-            string harness = language.Name switch
-            {
-                "Python" => Harness.GetPythonHarness(),
-                "cpp" => throw new Exception("cpp not implemented yet"),
-                _ => throw new Exception($"{language.Name} not implemented yet")
-            };
-
-            string fullCode = sourceCode + harness;
-            await File.WriteAllTextAsync(fullPath, fullCode);
 
             var testData = new
             {
@@ -48,12 +21,12 @@ namespace OnlineJudger.JudgeWorker.Services
                 function_name = methodName,
                 test_case = new
                 {
-                    inputs = JsonSerializer.Deserialize<JsonElement>(testCase.InputData), 
+                    inputs = JsonSerializer.Deserialize<JsonElement>(testCase.InputData),
                     expected = JsonSerializer.Deserialize<JsonElement>(testCase.ExpectedOutput)
                 }
             };
             var testDataJson = JsonSerializer.Serialize(testData);
-            var exec = await _sandboxExecuter.ExecuteAsync(new(language.RunCommand, fullPath, testDataJson));
+            var exec = await _sandboxExecuter.ExecuteAsync(new(runCommand, path, testDataJson));
             if (exec.IsTimeout)
             {
                 return new TestRunResult
@@ -85,14 +58,17 @@ namespace OnlineJudger.JudgeWorker.Services
             var outputJson = JsonSerializer.Deserialize<JsonElement>(exec.Output);
             var expectedOutputJson = JsonSerializer.Deserialize<JsonElement>(testCase.ExpectedOutput);
             var actualOutput = outputJson.GetProperty("result").ToString();
+            actualOutput = actualOutput.Replace(" ", "");
             var expectedOutput = expectedOutputJson.GetProperty("value").ToString();
-            if(actualOutput != expectedOutput)
+            expectedOutput = expectedOutput.Replace(" ", "");
+            bool passed = JsonElement.DeepEquals(outputJson.GetProperty("result"), expectedOutputJson.GetProperty("value"));
+            if (!passed)
             {
                 return new TestRunResult
                 {
                     Success = false,
                     Status = Domain.Enums.SubmissionStatus.WrongAnswer,
-                    ErrorMessage = "Неверный ответ",
+                    ErrorMessage = $"Неверный ответ\nПри выходных данных: {testData.test_case.inputs}\nОжидаемый результат: {expectedOutput}\nФактический результат: {actualOutput}",
                     ActualOutput = actualOutput,
                     ExpectedOutput = expectedOutput
                 };

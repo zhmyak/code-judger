@@ -7,8 +7,8 @@ namespace OnlineJudger.API.Contracts
         [Required]
         public int ProblemId { get; set; }
         [Required]
-        public int LanguageId {  get; set; }
-        
+        public int LanguageId { get; set; }
+
         public string SourceCode { get; set; } = string.Empty;
     }
 }

@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Connections.Features;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
 using OnlineJudger.API.Contracts;
 using OnlineJudger.Application.Services;
-using OnlineJudger.Domain.Entities;
 using System.Security.Claims;
 
 

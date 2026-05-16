@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineJudger.Domain.Entities;
 using OnlineJudger.Domain.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineJudger.Infrastructure.Persistance
 {
@@ -40,7 +35,7 @@ namespace OnlineJudger.Infrastructure.Persistance
             return await _context.Submissions
                 .Include(s => s.Language)
                 .FirstOrDefaultAsync(s => s.Id == id);
-                
+
         }
 
         public void Update(Submission submission)

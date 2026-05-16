@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineJudger.API.Contracts;
 using OnlineJudger.Application.Services;
-using OnlineJudger.Domain.Stores;
 using System.Security.Claims;
 
 namespace OnlineJudger.API.Controllers
@@ -45,7 +44,7 @@ namespace OnlineJudger.API.Controllers
                 Id = problem.Id,
                 Title = problem.Title,
                 Description = problem.Description,
-                Difficulty =  problem.Difficulty.ToString(),
+                Difficulty = problem.Difficulty.ToString(),
                 IsSolved = problem.IsSolved
             };
             _logger.LogInformation($"Получена задча по id: {id}");

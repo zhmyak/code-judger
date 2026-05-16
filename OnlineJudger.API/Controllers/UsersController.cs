@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using OnlineJudger.API.Contracts;
 using OnlineJudger.Application.Services;
+using System.Security.Claims;
 
 namespace OnlineJudger.API.Controllers
 {
@@ -27,6 +26,7 @@ namespace OnlineJudger.API.Controllers
             return Ok(new
             {
                 token = accessToken,
+                username = request.Username
             });
         }
         [HttpPost("api/registration")]
@@ -37,6 +37,7 @@ namespace OnlineJudger.API.Controllers
             return Ok(new
             {
                 token = accessToken,
+                username = request.Username
             });
         }
         [Authorize]
@@ -52,6 +53,14 @@ namespace OnlineJudger.API.Controllers
         public async Task<IActionResult> GetUserInfo(int id)
         {
             var userInfo = await _userService.GetUserInfo(id);
+            return Ok(userInfo);
+        }
+        [Authorize]
+        [HttpGet("api/user")]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var userInfo = await _userService.GetUserInfo(userId);
             return Ok(userInfo);
         }
         [Authorize]
